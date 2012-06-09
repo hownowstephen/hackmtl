@@ -87,7 +87,7 @@ class Metros:
         try:
             distance = distance_calc.format(lat=float(kwargs['lat']), lng=float(kwargs['lng']))
             metros = []
-            for metro in db.get_all("SELECT stop_name, stop_id, {distance} FROM stops WHERE stop_name LIKE 'Station%' ORDER BY distance ASC limit 10".format(distance=distance)):
+            for metro in db.get_all("SELECT stop_name, stop_id, {distance} FROM stops WHERE stop_name LIKE 'Station%' AND stop_id < 100 ORDER BY distance ASC limit 10".format(distance=distance)):
                 metros.append({'name': metro[0], 'code': metro[1], 'distance': metro[2]})
             return {'status': 'success', 'response': metros}
         except:
