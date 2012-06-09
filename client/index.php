@@ -6,15 +6,22 @@
 	<title>Home Safe</title>
 	<script src="js/jquery-1.7.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="assets/countdown/jquery.countdown.js"></script>
+	<script src="assets/js/script.js"></script>
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
 	<link rel="stylesheet" href="css/bootstrap.css" />
 	<link rel="stylesheet" href="css/app.css" />
 	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
+
+    <link rel="stylesheet" href="assets/countdown/jquery.countdown.css" />
 	<script>
 	$(document).ready(function(){
 	
-	
+
 	$("#destination").hide();
-	$("#countdown").hide();
+	$("#timer").hide();
 	$("#hitmiss").hide();
 	$("#miss").hide();
 	$("#hit").hide();
@@ -25,7 +32,9 @@
   			$("#home").slideUp(250, 'linear');
 		}
 		$.getJSON("http://50.57.65.176:5000/metros?lat=45.5081&lng=-73.5550", function(json) {
-  			 console.log(json[1].name);
+  			 for (var i=0; i<json.response.length; i++) {
+  				 $("#destinations").append("<li><a href='#'>"+json.response[i].name+"</a></li>");
+  			 }
   			
  		});
 	});
@@ -34,13 +43,27 @@
 		 if( $("#home").is(":hidden") ) {
 			$("#home").slideDown(250, 'linear');
   				$("#destination").hide();
-				$("#countdown").hide();
+				$("#timer").hide();
 				$("#hitmiss").hide();
 				$("#miss").hide();
 				$("#hit").hide();
+				$("#destinations").html("");
 		}
 	});
 	
+     $("#destinations").click(function(){
+		 if( $("#timer").is(":hidden") ) {
+			$("#timer").slideDown(250, 'linear');
+  				$("#destination").hide();
+				$("#hitmiss").hide();
+				$("#miss").hide();
+				$("#hit").hide();
+				$("#home").hide();
+		}
+		$.getJSON("http://50.57.65.176:5000/metro/13/", function(json) {
+			$("#cntdwn").html(json.response[0].arrival);
+		});
+	});
 
 	
 	
@@ -75,15 +98,16 @@
 </section>
 <section id="destination">
 <div class="backBtn"><a class="backBtn"><img alt="back" src="img/back.png" width="70" height="70"></a></div>
-destination selected
+Select a destination:
 <ul id="destinations">
 
 </ul>
 </section>
 
-<section id="countdown">
+<section id="timer">
 <div class="backBtn"><a class="backBtn"><img alt="back" src="img/back.png" width="70" height="70"></a></div>
-countdown
+<div id="cntdwn">17:47:01</div>
+
 </section>
 
 <section id="miss">
@@ -96,5 +120,8 @@ miss
 hit
 </section>
 
+<!-- javascripts --//>
+
+</div>
 </body>
 </html>
