@@ -1,0 +1,105 @@
+/**** Base styles ****/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Helvetica Neue', Arial, sans-serif;
+	font-size: 1.2em;
+	line-height: 1.2em;
+	color: #FFFFFF;
+	background: url(../img/bg_tile.png) repeat, -webkit-linear-gradient(top,#464646 0%,#141414 100%);
+}
+
+#container {
+	width: 320px;
+	height: 480px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+header {
+	width: 100%;
+}
+
+#logo {
+	width: 204px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#navContainer {
+
+}
+
+#blueLineBtn {
+	background: url(../img/btn_bg_tile.png) repeat, #3364b3;
+	width: 90px;
+	height: 90px;
+	margin: 5px auto 5px auto;
+	-webkit-border-radius: 10px;
+}
+
+#orangeLineBtn
+{
+  	background: #db6913;
+  	background: url(../img/btn_bg_tile.png) repeat, #db6913;
+	width: 90px;
+	height: 90px;
+	margin: 5px auto 5px auto;
+	-webkit-border-radius: 10px;
+}
+
+
+#yellowLineBtn
+{
+  	background: #f5d800;
+  	background: url(../img/btn_bg_tile.png) repeat, #f5d800;
+	width: 90px;
+	height: 90px;
+	margin: 5px auto 5px auto;
+	-webkit-border-radius: 10px;
+}
+
+
+#greenLineBtn
+{
+  	background: #3d7d26;
+  	background: url(../img/btn_bg_tile.png) repeat, #3d7d26;
+	width: 90px;
+	height: 90px;
+	margin: 5px auto 5px auto;
+	-webkit-border-radius: 10px;
+}
+
+.rounded-corners 
+{
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.backBtn
+{
+
+}
