@@ -65,7 +65,10 @@ class Metro:
     def get(*args, **kwargs):
 
         try:
-            pass
+            stops = []
+            for stop in db.get_all("SELECT arrival_time FROM stop_times WHERE stop_id='%s'" % kwargs['metro_id']):
+                stops.append({'arrives': stop[0]})
+            return {'status': 'success', 'results': stops}
         except:
             return {'status': 'failed', 'reason': 'no metro with that id found'}
 
