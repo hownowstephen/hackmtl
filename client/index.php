@@ -25,7 +25,8 @@
   			$("#home").slideUp(250, 'linear');
 		}
 		$.getJSON("http://50.57.65.176:5000/metros?lat=45.5081&lng=-73.5550", function(json) {
-  			 console.log(json);
+  			 console.log(json.response.name);
+  			
  		});
 	});
 	
@@ -75,7 +76,9 @@
 <section id="destination">
 <div class="backBtn"><a class="backBtn"><img alt="back" src="img/back.png" width="70" height="70"></a></div>
 destination selected
+<ul id="destinations">
 
+</ul>
 </section>
 
 <section id="countdown">
