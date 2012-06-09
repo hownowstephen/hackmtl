@@ -62,25 +62,21 @@
 		}
 		$.getJSON("http://50.57.65.176:5000/metro/13/", function(json) {
 			$("#cntdwn").html(json.results[0].diff);
+			var count = json.results[0].diff;
+			function dump(){
+				count --;
+				if(count < 0){
+					alert("FAIL, maybe you should try a bixi?");
+				}
+				$("#cntdwn").html(count);
+			}
+			setInterval(function(){ count --; if(count <0) alert("FAIL, maybe you should take a Taxi, Bixi or just give up and go back to the bar");
+$("#cntdwn").html(count);
+}, 1000);
 		});
 	});
 
-	var count=30;
 
-	var counter=setInterval("timer()",1000); //1000 will  run it every 1 second
-
-	function timer()
-	{
- 	 count=count-1;
- 	 	if (count <= 0)
- 		 {
-    	 clearInterval(counter);
-    	 //counter ended, do something here
-   		 return;
- 	 }
-
-  //Do code for showing the number of seconds here
-	}
 	
 	});
 	
