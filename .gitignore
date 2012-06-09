@@ -1,3 +1,7 @@
+.Python
+lib/
+bin/
+include/
 *.log
 *.pot
 *.pyc
