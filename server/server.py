@@ -9,6 +9,8 @@ from traceback import print_tb
 import re
 import txml
 import requests
+from datetime import timedelta, datetime
+from dateutil import parser as dateutil
 
 db = TransitDB()
 yapi = YellowAPI(api_key='vvpw2zjmmp4t96xtkmt9xu8u', test_mode=True)
@@ -66,10 +68,13 @@ class Metro:
 
         try:
             stops = []
-            for stop in db.get_all("SELECT arrival_time FROM stop_times WHERE stop_id='%s'" % kwargs['metro_id']):
-                stops.append({'arrives': stop[0]})
+            for stop in db.get_all("SELECT arrival_time FROM stop_times2 WHERE stop_id='%s' AND arrival_time > CURTIME() ORDER BY arrival_time ASC LIMIT 10" % kwargs['metro_id'].strip()):
+                now = datetime.now().timetuple()
+                delta = stop[0].seconds - timedelta(hours=now.tm_hour, minutes=now.tm_min).seconds
+                stops.append({'diff': delta, 'arrival': str(stop[0])})
             return {'status': 'success', 'results': stops}
         except:
+            print sys.exc_info()
             return {'status': 'failed', 'reason': 'no metro with that id found'}
 
 
@@ -82,11 +87,10 @@ class Metros:
         try:
             distance = distance_calc.format(lat=float(kwargs['lat']), lng=float(kwargs['lng']))
             metros = []
-            for metro in db.get_all("SELECT stop_name, stop_code, %s FROM stops ORDER BY distance ASC limit 10" % distance):
+            for metro in db.get_all("SELECT stop_name, stop_id, {distance} FROM stops WHERE stop_name LIKE 'Station%' ORDER BY distance ASC limit 10".format(distance=distance)):
                 metros.append({'name': metro[0], 'code': metro[1], 'distance': metro[2]})
             return {'status': 'success', 'response': metros}
         except:
-	    print sys.exc_info()
             return {'status': 'failed', 'reason': 'could not retrieve your location'}
 
 
@@ -135,4 +139,7 @@ def cache_taxis():
 
 app.debug = True
 if __name__ == '__main__':
-    app.run(host='50.57.65.176')
+    try:
+        app.run(host='50.57.65.176')
+    except:
+        app.run()
