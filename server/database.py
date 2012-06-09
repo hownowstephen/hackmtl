@@ -4,12 +4,12 @@ import MySQLdb as mdb
 class TransitDB:
 
     def __init__(self):
-        self.conn = mdb.connect('50.57.65.176', 'transit', 'mtlhack', 'transit')
+        self.conn = mdb.connect('localhost', 'transit', 'mtlhack', 'transit')
         self.cursor = self.conn.cursor()
 
     def run(self, sql):
         self.cursor.execute(sql)
-        self.cursor.fetchone()
+        self.conn.commit()
 
     def get_one(self, sql):
         self.cursor.execute(sql)
