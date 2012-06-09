@@ -61,7 +61,7 @@
 				$("#home").hide();
 		}
 		$.getJSON("http://50.57.65.176:5000/metro/13/", function(json) {
-			$("#cntdwn").html(json.response[0].arrival);
+			$("#cntdwn").html(json.results[0].arrival);
 		});
 	});
 
@@ -122,7 +122,7 @@ Select a destination:
 <section id="timer">
 <div class="backBtn"><a class="backBtn"><img alt="back" src="img/back.png" width="70" height="70"></a></div>
 <p>Time till next metro:</p>
-<div id="cntdwn">17:47:01</div>
+<div id="cntdwn"></div>
 
 </section>
 
