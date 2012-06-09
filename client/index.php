@@ -25,7 +25,7 @@
   			$("#home").slideUp(250, 'linear');
 		}
 		$.getJSON("http://50.57.65.176:5000/metros?lat=45.5081&lng=-73.5550", function(json) {
-  			 console.log(json.response.name);
+  			 console.log(json[1].name);
   			
  		});
 	});
