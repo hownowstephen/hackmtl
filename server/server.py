@@ -79,10 +79,11 @@ class Metros:
         try:
             distance = distance_calc.format(lat=float(kwargs['lat']), lng=float(kwargs['lng']))
             metros = []
-            for metro in db.get_all("SELECT stop_name, stop_code, %s FROM lan_lon ORDER BY distance ASC limit 10" % distance):
+            for metro in db.get_all("SELECT stop_name, stop_code, %s FROM stops ORDER BY distance ASC limit 10" % distance):
                 metros.append({'name': metro[0], 'code': metro[1], 'distance': metro[2]})
             return {'status': 'success', 'response': metros}
         except:
+	    print sys.exc_info()
             return {'status': 'failed', 'reason': 'could not retrieve your location'}
 
 
@@ -131,4 +132,4 @@ def cache_taxis():
 
 app.debug = True
 if __name__ == '__main__':
-    app.run()
+    app.run(host='50.57.65.176')
