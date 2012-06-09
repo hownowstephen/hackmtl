@@ -65,7 +65,22 @@
 		});
 	});
 
-	
+	var count=30;
+
+	var counter=setInterval("timer()",1000); //1000 will  run it every 1 second
+
+	function timer()
+	{
+ 	 count=count-1;
+ 	 	if (count <= 0)
+ 		 {
+    	 clearInterval(counter);
+    	 //counter ended, do something here
+   		 return;
+ 	 }
+
+  //Do code for showing the number of seconds here
+	}
 	
 	});
 	
@@ -106,6 +121,7 @@ Select a destination:
 
 <section id="timer">
 <div class="backBtn"><a class="backBtn"><img alt="back" src="img/back.png" width="70" height="70"></a></div>
+<p>Time till next metro:</p>
 <div id="cntdwn">17:47:01</div>
 
 </section>
