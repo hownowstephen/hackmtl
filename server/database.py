@@ -9,7 +9,7 @@ class TransitDB:
 
     def run(self, sql):
         self.cursor.execute(sql)
-        self.cursor.fetchone()
+        self.conn.commit()
 
     def get_one(self, sql):
         self.cursor.execute(sql)
